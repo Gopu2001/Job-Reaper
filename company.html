@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Job Opportunities</title>
+    <!-- <script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script>
+      // // if there is an error where the iframe cannot load
+      // var iframeError;
+      // function change() {
+      //   var url
+      // }
+
+      var openJobs = 0;
+      // expand the iframe in which the application will be placed in
+      function expandIFrame(iframeName, link) {
+        // var html_link = "";
+        // $.ajax({ url: link, success: function(data) { html_link = data; } });
+
+        // Get the iframe object into ifr
+        var ifr = document.getElementsByName(iframeName)[0];
+        // get the new tab button object into newTabBTN
+        var newTabBTN = document.getElementsByName(iframeName + "-button")[0];
+
+        // If the iframe is open, remove the iframe
+        if(ifr.style.display != "none") {
+          ifr.height = "0";
+          ifr.width = "0";
+          ifr.src = "";
+          ifr.srcdoc = "";
+          ifr.style.display = "none";
+          newTabBTN.style.display = "none";
+          newTabBTN.innerHTML = "";
+          openJobs -= 1;
+        // if the iframe is closed, open the iframe
+        } else {
+          ifr.height = "500";
+          ifr.width = "100%";
+          ifr.src = link;
+          ifr.style.display = "";
+          newTabBTN.style.display = "";
+          newTabBTN.innerHTML = "<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAb1BMVEX///8AAABhYWHo6OgxMTGxsbG6urqenp729vZoaGjs7Ozu7u4yMjLFxcX7+/ujo6PW1taSkpKrq6t5eXmDg4OLi4tubm5BQUFSUlLMzMwhISHGxsZ0dHQNDQ2ZmZleXl4YGBgoKCjg4OB+fn4+Pj6sesykAAADZElEQVR4nO3d21bbMBBAUeVCEnJzLg0BmkCh/f9vbAldDVGV2h1r1ozMOc8IaS8egmNZDoGIiIiISmm07Xev7ejs63W042/jF+uFKLZ7A1bWq1BtE8LMeg3KTcKT9RKUq8LeegnKPQfrFWj3rfPCHsLyQ1h+CMvv8wmHs0Fts+do0Kp+zHQcjamm9YNW0Zh+k8UNa4TzJhfMt9GgWYMxN9GYmwZj4quC2yaLm9cIh01+SSycNhgjEU4lwrq/IcJTCFMhTIUwGUKEpxCmQpgKYTKECE8hTIUwFcJkCBGeQpgKYSqEyRAiPIUwFcJUCJOpCCV310b1Q/66u3bXZHEqd9fW49qqu3i1Vf2gdTRm32BM9aghdB1ChP5DiNB/ImH82eY6kXBrslRhIuHGZKnCRMKintEQCYt6kEgmDC8GSxUmFC7vTVYrSSj8db0XX6V4TSwMYfAwctgiy/Wh67Jc47suy/c0rkOI0H8IEfoPIUL/IUToP4QI/YcQYbs2b6fh7JtsNJFnKfzz8PnxVXEWQ+HiwzQPetPYCS9v50zU5rETXt443qrNYyacRBMttSYyEy6iiVZaE5kJJTv3RLkRqn0oIkQoDmG2ECIUhzBbCBGKQ5gthAjFIcwWQoTiEGYLIUJx8ctsCv2+dHHYD68UbzB/vPaD++1Xt8LVSy9PwzZf+SsKc75UaeFR+JoR2OsNHArzvrDm3p8wPiG+beJb/WrC3G9V2rgTHjILv3deeHAnjM8hadvanfAhs1C840bv0yLvE5cv4nXoCePNFu2Sb5pS/K9tlxH4JF+G5n/e8SWgvDYXj6pXT5Pdjwy8/brVpjftK+DlJN0yPmlic/UnW66AbzEQikOYLYQIxSHMFkKE4hBmCyFCcQizhRChOITZQohQHMJsuXlKtsV+kn9nJozPHm7yTgxRdk+rX55a+6w2j53wcjuK3rkRhqdGfNyPUulNY3nyx/n2k+bpJqantwzeD+Q/NHm3kDjrE3gGK1VesBfqhxCh/xAi9B9ChP5DiNB/CBH6D2H3hXPrBbau9m84G5TdrE7YvRCWH8LyQ1h+n0B4tF6BcsdQzitTZd2HsfUSlBuX9X5mQZMQKus1qHY6fKKkV1D/b7v3K6qcR+e46ng+j2m063evndrGMiIiIiLK3k+Kj23Hh54TUgAAAABJRU5ErkJggg==' width='40px' height='40px' />";
+          openJobs += 1;
+        }
+        // if there is an error displaying the html page / iframe
+        ifr.onload = function() {
+          try {
+            (ifr.contentWindow||ifr.contentDocument).location.href;
+          } catch(err) {
+            ifr.srcdoc = "<h2>&nbsp;&nbsp;&nbsp;&nbsp;&uarr;</h2><br><center><h3>Due to the settings on the website, the application link for this job opening cannot be displayed. Please open this link in a new tab.</h3></center>";
+            console.log("Arrived at below error: " + err);
+          }
+        }
+        // here we will set the top attribute for the job just below the clicked iframe
+        var jobOpps = document.getElementsByClassName("job-opp");
+        var start = false;
+        // for each item in jobOpps, start right after you reach the element clicked on
+        for (var itemIndex = 0; itemIndex < jobOpps.length; itemIndex++) {
+          if(start) {
+            // console.log(ifr.height);
+            var adder = 40; // this is to be the top attribute if the iframe is opened
+            if(ifr.style.display == "none") { // if the iframe is closed
+              adder = 0;
+            }
+            // set the top attribute for that first element
+            jobOpps[itemIndex].style.marginTop = (parseInt(ifr.height)+adder) + "px";
+            // console.log(jobOpps[itemIndex].style.marginTop);
+            start = false;
+          }
+          // the id goes by the link, not job title
+          if(jobOpps[itemIndex].children[0].id == link) {
+            start = true;
+          }
+        }
+      }
+    </script>
+    <style>
+
+/* .jobs {
+  z-index=1;
+  overflow-x: hidden;
+  bottom: 100px;
+}
+
+.job-opp {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  background-color: rgb(200,200,200);
+  height: 40px;
+  width: 80%;
+  margin: auto;
+  text-align: left;
+} */
+
+    </style>
+  </head>
+  <body>
+    <a href="/">Go home</a>
+    <center><h1>Search for the job you want below to get started!</h1></center>
+    <div class="jobs">
+      {% for data in data %}
+        <div class="job-opp" style="margin-top: 0px">
+          <a href="{{data[1]}}">{{data[0]}}</a>
+          <!-- <a target="{{data[0]}}" id="{{data[1]}}" onclick="expandIFrame('{{data[0]}}', '{{data[1]}}'); return false;"><u style="color: blue; cursor: pointer;">{{data[0]}}</u></a><br>
+          <p>
+            <button name="{{data[0]}}-button" class="new-tab" style="display: none; background-color: white; position: relative; top: 15px; left: 15px; cursor: pointer;" onclick="window.open('{{data[1]}}','_blank')"></button>
+            <iframe name="{{data[0]}}" width="0" height="0" style="display: none; background-color: white;"></iframe>
+          </p> -->
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

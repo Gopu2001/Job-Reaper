@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Job Opportunities</title>
+  </head>
+  <body>
+    <a href="/">Go home</a>
+    <center><h1>Search Results for {{search}}:</h1></center>
+    <div class="jobs">
+      {% for data in data %}
+        <div class="job-opp" style="margin-top: 0px">
+          <p>From {{data[0]}} <a href="{{data[2]}}">{{data[1]}}</a></p>
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

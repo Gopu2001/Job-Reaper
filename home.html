@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Job Opportunities</title>
+    <style>
+.header {
+  top: 0px;
+  min-height: 150px;
+  height: 50vh;
+  margin: auto;
+  overflow-y: hidden;
+}
+.find-feature {
+  position: relative;
+  top: 5vh;
+  margin: auto;
+}
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <center><h1>Let me help you find your perfect job!</h1>
+      <form action="/search-results" class="find-feature">
+        What job are you looking for?<br>
+        <input type="text" name="find-feature">
+        <input type="submit" value="Submit">
+      </form></center>
+    </div>
+    <center><h2>Search by Company!</h2><center>
+    <div id="jobs">
+      {% for data in data %}
+        <a href="/companies/{{data[0]}}/">{{data[0]}}</a><br>
+      {% endfor %}
+    </div>
+    <script type="text/javascript">
+      var t = null;
+      var limit = 100;
+      var r = Math.round(Math.random()*(255-limit))+limit; var rt = !!(Math.round(Math.random()));
+      var g = Math.round(Math.random()*(255-limit))+limit; var gt = !!(Math.round(Math.random()));
+      var b = Math.round(Math.random()*(255-limit))+limit; var bt = !!(Math.round(Math.random()));
+      function changeBackground() {
+        if(t != null) {
+          window.clearTimeout(t);
+        }
+
+        if(r == 255) {
+          rt = false;
+        } else if(r == limit) {
+          rt = true;
+        }
+        if(g == 255) {
+          gt = false;
+        } else if(g == limit) {
+          gt = true;
+        }
+        if(b == 255) {
+          bt = false;
+        } else if(b == limit) {
+          bt = true;
+        }
+
+        if(rt) {
+          r += 1;
+        } else {
+          r -= 1;
+        }
+        if(gt) {
+          g += 1;
+        } else {
+          g -= 1;
+        }
+        if(bt) {
+          b += 1;
+        } else {
+          b -= 1;
+        }
+        document.getElementsByClassName("header")[0].style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+        t = window.setTimeout(changeBackground, Math.trunc((r + g + b)/(3*10)) + 1);
+      }
+      changeBackground();
+    </script>
+  </body>
+</html>
