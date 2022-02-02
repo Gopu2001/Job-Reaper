@@ -47,4 +47,4 @@ In navigating this project, keep in mind the following:
 * You may notice some errors with can't find file or related errors as some organization took place after so as to declutter the main folder. Contact me if you have any questions with finding any file.
 
 ## Other Files
-This section will be updated in the Wiki soon.
+For accessing the GitHub Project & Issues associated with this project, please see the original code repository at https://github.com/ccs-1l-f20/Gopu2001-Job-Reaper-The-Original
